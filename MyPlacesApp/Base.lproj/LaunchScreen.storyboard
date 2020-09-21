@@ -35,6 +35,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Logo" width="166" height="166"/>
+        <image name="Logo" width="166.5" height="166.5"/>
     </resources>
 </document>
