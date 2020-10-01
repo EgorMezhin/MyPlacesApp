@@ -15,6 +15,8 @@
 		D049036F251418F300067FAA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D049036E251418F300067FAA /* MainViewController.swift */; };
 		D0F024F225182383005BDE44 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D0F024F125182383005BDE44 /* .gitignore */; };
 		D0F024F42518E9C2005BDE44 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F024F32518E9C2005BDE44 /* CustomTableViewCell.swift */; };
+		D0F024F625190646005BDE44 /* PlaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F024F525190646005BDE44 /* PlaceModel.swift */; };
+		D0F024F825193019005BDE44 /* NewPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F024F725193019005BDE44 /* NewPlaceViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		D049036E251418F300067FAA /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D0F024F125182383005BDE44 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		D0F024F32518E9C2005BDE44 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		D0F024F525190646005BDE44 /* PlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceModel.swift; sourceTree = "<group>"; };
+		D0F024F725193019005BDE44 /* NewPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,8 @@
 			children = (
 				D049035A2514068F00067FAA /* AppDelegate.swift */,
 				D049036E251418F300067FAA /* MainViewController.swift */,
+				D0F024F725193019005BDE44 /* NewPlaceViewController.swift */,
+				D0F024F525190646005BDE44 /* PlaceModel.swift */,
 				D0F024F32518E9C2005BDE44 /* CustomTableViewCell.swift */,
 				D0F024F125182383005BDE44 /* .gitignore */,
 				D049035C2514068F00067FAA /* SceneDelegate.swift */,
@@ -146,7 +152,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D049036F251418F300067FAA /* MainViewController.swift in Sources */,
+				D0F024F825193019005BDE44 /* NewPlaceViewController.swift in Sources */,
 				D049035B2514068F00067FAA /* AppDelegate.swift in Sources */,
+				D0F024F625190646005BDE44 /* PlaceModel.swift in Sources */,
 				D0F024F42518E9C2005BDE44 /* CustomTableViewCell.swift in Sources */,
 				D049035D2514068F00067FAA /* SceneDelegate.swift in Sources */,
 			);
