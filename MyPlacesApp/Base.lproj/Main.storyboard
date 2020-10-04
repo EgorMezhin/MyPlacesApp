@@ -67,6 +67,7 @@
                                     <outlet property="locationLabel" destination="6yQ-Uq-jSd" id="qYx-b1-jsp"/>
                                     <outlet property="nameLabel" destination="vvC-SJ-cLC" id="kkN-ZM-qF7"/>
                                     <outlet property="typeLabel" destination="BpF-zl-TQH" id="9HQ-4E-8Uj"/>
+                                    <segue destination="gIO-so-Ngj" kind="show" identifier="showDetail" id="7OM-ko-xIo"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -75,7 +76,7 @@
                             <outlet property="delegate" destination="ydY-Nx-Zc3" id="pPz-dr-aHQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Places" id="CfD-j7-vVE">
+                    <navigationItem key="navigationItem" title="My Places" largeTitleDisplayMode="never" id="CfD-j7-vVE">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="UEd-mZ-AEw">
                             <connections>
                                 <segue destination="tP3-pm-Yw8" kind="presentation" modalTransitionStyle="coverVertical" id="CG1-bO-wHe"/>
@@ -231,7 +232,7 @@
                             <outlet property="delegate" destination="gIO-so-Ngj" id="beS-tX-eO5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="New Place" id="zS4-YE-pfW">
+                    <navigationItem key="navigationItem" title="New Place" largeTitleDisplayMode="always" id="zS4-YE-pfW">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="R1w-Sd-dSU">
                             <connections>
                                 <action selector="cancelAction:" destination="gIO-so-Ngj" id="T1h-6B-cSJ"/>
@@ -260,8 +261,8 @@
         <scene sceneID="pU6-Tw-EnY">
             <objects>
                 <navigationController id="BJT-cK-cfN" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6vf-kF-EHr">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="6vf-kF-EHr">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="22"/>
@@ -291,9 +292,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4E5-kz-dby" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="801" y="129"/>
+            <point key="canvasLocation" x="784" y="-313"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="7OM-ko-xIo"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Photo Placeholder" width="166.5" height="166.5"/>
     </resources>
