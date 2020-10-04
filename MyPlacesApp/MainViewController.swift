@@ -51,6 +51,34 @@ class MainViewController: UITableViewController {
         cell.imageOfPlace?.clipsToBounds = true
         return cell
     }
+    
+//MARK: - Table View Delegate
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let place = self.places[indexPath.row]
+        let contextItem = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
+
+           // let place = self.places[indexPath.row]
+           // let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, _) in }
+            
+            StorageManager.deleteObject(place)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+        }
+        let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
+        
+        return swipeActions
+    }
+/*
+  func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+     let contextItem = UIContextualAction(style: .destructive, title: deleteActionTitle) {  (contextualAction, view, boolValue) in
+         //Code I want to do here
+     }
+     let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
+
+     return swipeActions
+ }
+ */
     /*
     // MARK: - Navigation
 
