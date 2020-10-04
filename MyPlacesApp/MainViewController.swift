@@ -9,9 +9,13 @@
 import UIKit
 import RealmSwift
 
-class MainViewController: UITableViewController {
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var reversedSortingButton: UIBarButtonItem!
+    @IBOutlet weak var segmentedControlOultet: UISegmentedControl!
+    @IBOutlet weak var tableView: UITableView!
     var places: Results<Place>!
+    var ascendingSorting = true
         
 //        (name: "Mcdonalds", location: "Moscow", type: "Fast food", image: "Mcdonalds"),
 //    Place(name: "Plovnaya #1", location: "Moscow", type: "Restaraunt", image: "Plovnaya #1"),
@@ -25,21 +29,33 @@ class MainViewController: UITableViewController {
         super.viewDidLoad()
         
         places = realm.objects(Place.self)
-
+        
+//        segmentedControlOultet.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([segmentedControlOultet.topAnchor.constraint(equalTo: view.topAnchor), segmentedControlOultet.leftAnchor.constraint(equalTo: view.leftAnchor), segmentedControlOultet.rightAnchor.constraint(equalTo: view.rightAnchor), segmentedControlOultet.widthAnchor.constraint(equalTo: view.widthAnchor)])
+        //let topConstraint = segmentedControlOultet.topAnchor.constraint(equalTo: view.topAnchor, constant: 100)
+//        let verticalConstraint = NSLayoutConstraint(item: segmentedControlOultet!, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view.safeAreaInsets.top, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 65)
+        
+       // view.addConstraint(topConstraint)
+/*
+        
+           let verticalConstraint = NSLayoutConstraint(item: newView, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1, constant: 0)
+           let widthConstraint = NSLayoutConstraint(item: newView, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 100)
+           view.addConstraints([verticalConstraint, widthConstraint,])
+ */
     }
 
     // MARK: - Table view data source
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return places.isEmpty ? 0 : places.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
 
          let place = places[indexPath.row]
 
-
+        
         cell.nameLabel.text = place.name
         cell.locationLabel.text = place.location
         cell.typeLabel.text = place.type
@@ -52,9 +68,10 @@ class MainViewController: UITableViewController {
         return cell
     }
     
+    
 //MARK: - Table View Delegate
     
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let place = self.places[indexPath.row]
         let contextItem = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
@@ -100,4 +117,29 @@ class MainViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    @IBAction func sortSelection(_ sender: UISegmentedControl) {
+        
+       sorting()
+    }
+    @IBAction func reversedSorting(_ sender: UIBarButtonItem) {
+        
+        ascendingSorting.toggle()
+        
+        if ascendingSorting == true {
+            reversedSortingButton.image = #imageLiteral(resourceName: "AZ")
+        } else {
+            reversedSortingButton.image = #imageLiteral(resourceName: "ZA")
+        }
+        sorting()
+    }
+    
+    private func sorting() {
+        if segmentedControlOultet.selectedSegmentIndex == 0 {
+            places = places.sorted(byKeyPath: "date", ascending: ascendingSorting)
+                } else {
+                    places = places.sorted(byKeyPath: "name", ascending: ascendingSorting)
+        }
+        tableView.reloadData()
+    }
 }
+
