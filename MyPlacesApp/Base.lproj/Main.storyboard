@@ -143,6 +143,23 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="150" id="ccY-al-Obg">
+                                        <rect key="frame" x="0.0" y="503" width="414" height="150"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ccY-al-Obg" id="k57-gJ-Wv2">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="256" placeholderIntrinsicHeight="44" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="FWR-Mu-DsX" customClass="RatingControl" customModule="MyPlacesApp" customModuleProvider="target">
+                                                    <rect key="frame" x="64" y="50" width="286" height="50"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="FWR-Mu-DsX" firstAttribute="centerX" secondItem="k57-gJ-Wv2" secondAttribute="centerX" id="3S9-P5-UA3"/>
+                                                <constraint firstItem="FWR-Mu-DsX" firstAttribute="centerY" secondItem="k57-gJ-Wv2" secondAttribute="centerY" id="daw-M0-hvo"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -168,6 +185,7 @@
                         <outlet property="placeLocation" destination="24G-hn-Ht6" id="ke3-a6-iJK"/>
                         <outlet property="placeName" destination="RKU-DQ-qY3" id="Yuo-2p-Hqe"/>
                         <outlet property="placeType" destination="trf-Pz-AQw" id="ZUK-ul-VRa"/>
+                        <outlet property="ratingControl" destination="FWR-Mu-DsX" id="Dzf-EM-Bnh"/>
                         <outlet property="saveButton" destination="C88-Ya-cqF" id="85f-7h-8od"/>
                     </connections>
                 </tableViewController>
@@ -195,7 +213,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iUw-JN-cZZ">
-                                <rect key="frame" x="0.0" y="120" width="414" height="742"/>
+                                <rect key="frame" x="0.0" y="120" width="414" height="776"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" translatesAutoresizingMaskIntoConstraints="NO" id="YbV-oj-1YD" customClass="CustomTableViewCell" customModule="MyPlacesApp" customModuleProvider="target">
@@ -266,7 +284,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="iUw-JN-cZZ" firstAttribute="top" secondItem="ZKt-zj-a1E" secondAttribute="bottom" constant="1" id="BKa-1J-v9U"/>
-                            <constraint firstItem="eeq-nz-3rm" firstAttribute="bottom" secondItem="iUw-JN-cZZ" secondAttribute="bottom" id="EKi-aQ-Sbx"/>
+                            <constraint firstAttribute="bottom" secondItem="iUw-JN-cZZ" secondAttribute="bottom" id="EKi-aQ-Sbx"/>
                             <constraint firstItem="ZKt-zj-a1E" firstAttribute="top" secondItem="eeq-nz-3rm" secondAttribute="top" id="Ite-gz-f6Q"/>
                             <constraint firstItem="ZKt-zj-a1E" firstAttribute="trailing" secondItem="eeq-nz-3rm" secondAttribute="trailing" id="J3N-tV-jNw"/>
                             <constraint firstItem="ZKt-zj-a1E" firstAttribute="leading" secondItem="eeq-nz-3rm" secondAttribute="leading" id="aCh-Hj-ZqS"/>
