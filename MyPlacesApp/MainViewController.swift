@@ -12,7 +12,7 @@ import RealmSwift
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     private let searchController = UISearchController(searchResultsController: nil)
-    
+    private var rating = RatingControl()
     private var places: Results<Place>!
     private var filteredPlaces: Results<Place>!
     private var ascendingSorting = true
@@ -24,7 +24,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return searchController.isActive && !searchBarIsEmpty
     }
     
-        
+
     @IBOutlet weak var reversedSortingButton: UIBarButtonItem!
     @IBOutlet weak var segmentedControlOultet: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
@@ -39,6 +39,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         searchController.searchBar.placeholder = "Search"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+        
     }
 
     // MARK: - Table view data source
@@ -53,8 +54,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
-
+      //  var cellRating = rating.starCount
+        //print(cellRating)
         var place = Place()
+
         
         if isFiltering {
             place = filteredPlaces[indexPath.row]
@@ -66,11 +69,22 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.locationLabel.text = place.location
         cell.typeLabel.text = place.type
         cell.imageOfPlace.image = UIImage(data: place.imageData!)
-
+       // print(cell.ratingCollection.count)
+        let starsNumber = Int(place.rating)
+        
         cell.imageOfPlace?.layer.borderWidth = 1
         cell.imageOfPlace?.layer.borderColor = UIColor.magenta.cgColor
         cell.imageOfPlace?.layer.cornerRadius = cell.imageOfPlace.frame.size.height / 2
         cell.imageOfPlace?.clipsToBounds = true
+        
+        for element in 0..<starsNumber {
+            cell.ratingCollection[element].image = #imageLiteral(resourceName: "filledStar")
+        }
+//
+//        for stars in cell.ratingCollection {
+//            stars.image = #imageLiteral(resourceName: "filledStar")
+//        }
+        
         return cell
     }
     
