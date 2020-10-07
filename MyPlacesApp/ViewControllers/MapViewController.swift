@@ -11,6 +11,7 @@ import MapKit
 import CoreLocation
 
 protocol MapViewControllerDelegate {
+    
     func getAddress(_ address: String?)
 }
 
@@ -20,8 +21,6 @@ class MapViewController: UIViewController {
     var mapViewControllerDelegate: MapViewControllerDelegate?
     var place = Place()
     let annotationIdentifier = "annotationIdentifier"
-
-    
     var incomeSegueIdentifier = ""
     var previousLocation: CLLocation? 
     
@@ -37,25 +36,24 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func doneButtonPressed() {
+        
         mapViewControllerDelegate?.getAddress(addressLabel.text)
         dismiss(animated: true)
     }
     @IBAction func closeVC() {
+        
         dismiss(animated: true)
     }
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         addressLabel.text = ""
         mapView.delegate = self
         setupMapView()
-    
-
-        // Do any additional setup after loading the view.
     }
     
     private func setupMapView() {
-        
         
         mapManager.checkLocationServices(mapView: mapView, segueIdentifier: incomeSegueIdentifier) {
             mapManager.locationManager.delegate = self
@@ -67,37 +65,19 @@ class MapViewController: UIViewController {
             doneButton.isHidden = true
         }
     }
-
-//    private func setUpLocationManager() {
-//        locationManager.delegate = self
-//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//    }
-//
-//    private func realTimeLocation() {
-//
-//        guard let location = locationManager.location?.coordinate else { return }
-//
-//        locationManager.startUpdatingLocation()
-//
-//        previousLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
-//
-//    }
 }
 
 extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
         guard !(annotation is MKUserLocation) else {return nil}
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) as? MKPinAnnotationView
-        
         if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
             annotationView?.canShowCallout = true
         }
-        
         if let imageData = place.imageData {
-            
-        
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         imageView.layer.cornerRadius = 10
         imageView.clipsToBounds = true
@@ -111,21 +91,17 @@ extension MapViewController: MKMapViewDelegate {
         
         let center = mapManager.getCenterLocation(for: mapView)
         let geocoder = CLGeocoder()
-        
         geocoder.reverseGeocodeLocation(center) { (placemarks, error) in
-            
             if let error = error {
                 print(error)
                 return
             }
             guard let placemarks = placemarks else { return }
-            
             let placemark = placemarks.first
             let streetname = placemark?.thoroughfare
             let buildNumber = placemark?.subThoroughfare
-            
+    
             DispatchQueue.main.async {
-
                 if streetname != nil && buildNumber != nil {
                     self.addressLabel.text = "\(streetname!), \(buildNumber!)"
                 } else if streetname != nil {
@@ -133,16 +109,15 @@ extension MapViewController: MKMapViewDelegate {
                 } else {
                     self.addressLabel.text = ""
                 }
-                     
             }
-             }
+        }
     }
-    
 }
 
 extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
         mapManager.checkLocationAuthorization(mapView: mapView, incomeSegueIdentifier: incomeSegueIdentifier)
     }
 }
