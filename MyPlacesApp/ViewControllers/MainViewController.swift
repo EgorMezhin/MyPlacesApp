@@ -62,12 +62,17 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.typeLabel.text = place.type
         cell.imageOfPlace.image = UIImage(data: place.imageData!)
         let starsNumber = Int(place.rating)
+        print(starsNumber)
         cell.imageOfPlace?.layer.borderWidth = 1
         cell.imageOfPlace?.layer.borderColor = UIColor.magenta.cgColor
         cell.imageOfPlace?.layer.cornerRadius = cell.imageOfPlace.frame.size.height / 2
         cell.imageOfPlace?.clipsToBounds = true
         
-        for element in 0..<starsNumber {
+        for element in 0..<cell.ratingCollection.count{
+            cell.ratingCollection[element].image = #imageLiteral(resourceName: "emptyStar")
+        }
+        
+        for element in 0..<starsNumber{
             cell.ratingCollection[element].image = #imageLiteral(resourceName: "filledStar")
         }
         return cell
