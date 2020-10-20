@@ -46,7 +46,6 @@ import UIKit
     //MARK: - Button Action
     
     @objc func ratingButtonTapped(button: UIButton) {
-        
         guard let index = ratingButtons.firstIndex(of: button) else { return }
         let selectedRating = index + 1
         if selectedRating == rating {
@@ -59,21 +58,24 @@ import UIKit
     //MARK: - Private Methods
     
     private func setupButtons() {
-        
         for button in ratingButtons {
             removeArrangedSubview(button)
             button.removeFromSuperview()
         }
         ratingButtons.removeAll()
-        
         let bundle = Bundle(for: type(of: self))
-        let filledStar = UIImage(named: "filledStar", in: bundle, compatibleWith: self.traitCollection)
-        let emptyStar = UIImage(named: "emptyStar", in: bundle, compatibleWith: self.traitCollection)
-        let highlightedStar = UIImage(named: "highlightedStar", in: bundle, compatibleWith: self.traitCollection)
+        let filledStar = UIImage(named: "filledStar",
+                                 in: bundle,
+                                 compatibleWith: self.traitCollection)
+        let emptyStar = UIImage(named: "emptyStar",
+                                in: bundle,
+                                compatibleWith: self.traitCollection)
+        let highlightedStar = UIImage(named: "highlightedStar",
+                                      in: bundle,
+                                      compatibleWith: self.traitCollection)
 
         for _ in 0..<starCount {
             let button = UIButton()
-        
             button.setImage(emptyStar, for: .normal)
             button.setImage(filledStar, for: .selected)
             button.setImage(highlightedStar, for: .highlighted)
@@ -82,7 +84,6 @@ import UIKit
             button.heightAnchor.constraint(equalToConstant: starSize.height).isActive = true
             button.widthAnchor.constraint(equalToConstant: starSize.width).isActive = true
             button.addTarget(self, action: #selector(ratingButtonTapped(button:)), for: .touchUpInside)
-            
             addArrangedSubview(button)
             ratingButtons.append(button)
         }

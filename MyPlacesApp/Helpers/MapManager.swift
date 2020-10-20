@@ -15,10 +15,8 @@ class MapManager {
     private let regionInMeters: Double = 2000
     
     func setupPlacemark(place: Place, mapView: MKMapView) {
-        
         guard let location = place.location else {return}
         let geocoder = CLGeocoder()
-        
         geocoder.geocodeAddressString(location) { (placemarks, error) in
             if let error = error {
                 print(error)
@@ -29,7 +27,6 @@ class MapManager {
             let annotation = MKPointAnnotation()
             annotation.title = place.name
             annotation.subtitle = place.type
-    
             guard let placemarkLocation = placemark?.location else {return}
             annotation.coordinate = placemarkLocation.coordinate
             mapView.showAnnotations([annotation], animated: true)
@@ -38,20 +35,19 @@ class MapManager {
     }
     
     func checkLocationServices(mapView: MKMapView, segueIdentifier: String, closure: () -> ()) {
-        
         if CLLocationManager.locationServicesEnabled() {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             checkLocationAuthorization(mapView: mapView, incomeSegueIdentifier: segueIdentifier)
             closure()
         } else {
             DispatchQueue.main.async {
-                self.showALert(title: "Location services are disabled", message: "You can enable it in Settings")
+                self.showALert(title: "Location services are disabled",
+                               message: "You can enable it in Settings")
             }
         }
     }
     
     func checkLocationAuthorization(mapView: MKMapView, incomeSegueIdentifier: String) {
-        
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse:
             mapView.showsUserLocation = true
@@ -59,7 +55,8 @@ class MapManager {
             break
         case .denied:
             DispatchQueue.main.async {
-                self.showALert(title: "Your location is not available", message: "Go to Settings to activate it ")
+                self.showALert(title: "Your location is not available",
+                               message: "Go to Settings to activate it ")
             }
             break
         case .notDetermined:
@@ -74,7 +71,6 @@ class MapManager {
     }
     
     func showUserLocation(mapView: MKMapView) {
-        
         if let location = locationManager.location?.coordinate {
             let region = MKCoordinateRegion(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
             mapView.setRegion(region, animated: true)
@@ -82,16 +78,12 @@ class MapManager {
     }
     
     func getCenterLocation(for mapView: MKMapView) -> CLLocation {
-        
         let latitude = mapView.centerCoordinate.latitude
         let longitude = mapView.centerCoordinate.longitude
         return CLLocation(latitude: latitude, longitude: longitude)
     }
     
-    
-    
     func showALert(title: String, message: String) {
-        
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
         alert.addAction(okAction)
