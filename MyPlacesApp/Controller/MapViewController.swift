@@ -11,18 +11,17 @@ import MapKit
 import CoreLocation
 
 protocol MapViewControllerDelegate {
-    
     func getAddress(_ address: String?)
 }
 
 class MapViewController: UIViewController {
     
     let mapManager = MapManager()
-    var mapViewControllerDelegate: MapViewControllerDelegate?
-    var place = Place()
     let annotationIdentifier = "annotationIdentifier"
     var incomeSegueIdentifier = ""
-    var previousLocation: CLLocation? 
+    var previousLocation: CLLocation?
+    var mapViewControllerDelegate: MapViewControllerDelegate?
+    var place = Place()
     
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var mapPinImage: UIImageView!
@@ -63,7 +62,6 @@ class MapViewController: UIViewController {
 }
 
 extension MapViewController: MKMapViewDelegate {
-    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard !(annotation is MKUserLocation) else {return nil}
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) as? MKPinAnnotationView
@@ -93,7 +91,6 @@ extension MapViewController: MKMapViewDelegate {
             let placemark = placemarks.first
             let streetname = placemark?.thoroughfare
             let buildNumber = placemark?.subThoroughfare
-            
             DispatchQueue.main.async {
                 if streetname != nil && buildNumber != nil {
                     self.addressLabel.text = "\(streetname!), \(buildNumber!)"
@@ -108,7 +105,6 @@ extension MapViewController: MKMapViewDelegate {
 }
 
 extension MapViewController: CLLocationManagerDelegate {
-    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         mapManager.checkLocationAuthorization(mapView: mapView, incomeSegueIdentifier: incomeSegueIdentifier)
     }

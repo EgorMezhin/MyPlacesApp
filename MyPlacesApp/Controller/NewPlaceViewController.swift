@@ -32,7 +32,6 @@ class NewPlaceViewController: UITableViewController {
     }
     
     // MARK: Table view delegate
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             let actionSheet = UIAlertController(title: nil,
@@ -55,7 +54,6 @@ class NewPlaceViewController: UITableViewController {
     }
     
     //MARK: - Navigation
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier,
             let mapVC = segue.destination as? MapViewController else { return }
@@ -123,9 +121,7 @@ class NewPlaceViewController: UITableViewController {
 }
 
 // MARK: Text Field Delegate
-
 extension NewPlaceViewController: UITextFieldDelegate {
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -142,9 +138,7 @@ extension NewPlaceViewController: UITextFieldDelegate {
 }
 
 // MARK: Work with image
-
 extension NewPlaceViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
     func chooseImagePicker(source: UIImagePickerController.SourceType) {
         if UIImagePickerController.isSourceTypeAvailable(source){
             let imagePicker = UIImagePickerController()
@@ -165,7 +159,6 @@ extension NewPlaceViewController: UIImagePickerControllerDelegate, UINavigationC
 }
 
 extension NewPlaceViewController: MapViewControllerDelegate {
-    
     func getAddress(_ address: String?) {
         placeLocation.text = address
     }

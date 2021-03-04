@@ -100,8 +100,6 @@
 				D0F024F725193019005BDE44 /* NewPlaceViewController.swift */,
 				D002EB8E252BD7D200392943 /* MapViewController.swift */,
 				D0F024F32518E9C2005BDE44 /* CustomTableViewCell.swift */,
-				D049035C2514068F00067FAA /* SceneDelegate.swift */,
-				D049035A2514068F00067FAA /* AppDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -109,6 +107,7 @@
 		D002EB93252E059900392943 /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
+				D04903652514069100067FAA /* LaunchScreen.storyboard */,
 				D0F024F125182383005BDE44 /* .gitignore */,
 				D04903682514069100067FAA /* Info.plist */,
 				D04903632514069100067FAA /* Assets.xcassets */,
@@ -120,7 +119,6 @@
 			isa = PBXGroup;
 			children = (
 				D04903602514068F00067FAA /* Main.storyboard */,
-				D04903652514069100067FAA /* LaunchScreen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -146,6 +144,8 @@
 		D04903592514068F00067FAA /* MyPlacesApp */ = {
 			isa = PBXGroup;
 			children = (
+				D049035A2514068F00067FAA /* AppDelegate.swift */,
+				D049035C2514068F00067FAA /* SceneDelegate.swift */,
 				D002EB90252E053B00392943 /* Model */,
 				D002EB98252E0DBA00392943 /* View */,
 				D002EB92252E057400392943 /* Controller */,

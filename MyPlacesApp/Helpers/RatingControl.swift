@@ -11,8 +11,8 @@ import UIKit
 @IBDesignable class RatingControl: UIStackView {
     
     //MARK: - Properties
-    
     private var ratingButtons = [UIButton]()
+    
     var rating = 0 {
         didSet {
             updateButtonSelectedState()
@@ -32,7 +32,6 @@ import UIKit
     }
     
     //MARK: - Initialization
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupButtons()
@@ -44,7 +43,6 @@ import UIKit
     }
     
     //MARK: - Button Action
-    
     @objc func ratingButtonTapped(button: UIButton) {
         guard let index = ratingButtons.firstIndex(of: button) else { return }
         let selectedRating = index + 1
@@ -56,7 +54,6 @@ import UIKit
     }
     
     //MARK: - Private Methods
-    
     private func setupButtons() {
         for button in ratingButtons {
             removeArrangedSubview(button)
@@ -73,7 +70,6 @@ import UIKit
         let highlightedStar = UIImage(named: "highlightedStar",
                                       in: bundle,
                                       compatibleWith: self.traitCollection)
-
         for _ in 0..<starCount {
             let button = UIButton()
             button.setImage(emptyStar, for: .normal)

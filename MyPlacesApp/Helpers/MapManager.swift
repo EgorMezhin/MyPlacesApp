@@ -12,6 +12,7 @@ import MapKit
 class MapManager {
     
     let locationManager = CLLocationManager()
+    
     private let regionInMeters: Double = 2000
     
     func setupPlacemark(place: Place, mapView: MKMapView) {

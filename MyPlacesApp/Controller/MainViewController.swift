@@ -16,6 +16,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     private var places: Results<Place>!
     private var filteredPlaces: Results<Place>!
     private var ascendingSorting = true
+    
     private var searchBarIsEmpty: Bool {
         guard let text = searchController.searchBar.text else { return false }
         return text.isEmpty
@@ -39,7 +40,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     // MARK: - Table view data source
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering {
             return filteredPlaces.count
@@ -64,20 +64,16 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.imageOfPlace?.layer.borderColor = UIColor.magenta.cgColor
         cell.imageOfPlace?.layer.cornerRadius = cell.imageOfPlace.frame.size.height / 2
         cell.imageOfPlace?.clipsToBounds = true
-        
         for element in 0..<cell.ratingCollection.count{
             cell.ratingCollection[element].image = #imageLiteral(resourceName: "emptyStar")
         }
-        
         for element in 0..<starsNumber{
             cell.ratingCollection[element].image = #imageLiteral(resourceName: "filledStar")
         }
         return cell
     }
     
-    
     //MARK: - Table View Delegate
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -93,7 +89,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     // MARK: - Navigation
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
@@ -117,6 +112,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBAction func sortSelection(_ sender: UISegmentedControl) {
         sorting()
     }
+    
     @IBAction func reversedSorting(_ sender: UIBarButtonItem) {
         ascendingSorting.toggle()
         if ascendingSorting == true {
@@ -138,7 +134,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 }
 
 extension MainViewController: UISearchResultsUpdating {
-    
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
     }
