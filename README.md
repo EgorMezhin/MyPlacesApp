@@ -3,6 +3,7 @@
 -----------------------------------
 - iPhone 11
 - iOS 13.7
+- CocoaPods
 - portrait orientation
 
 **Description:**
@@ -11,7 +12,10 @@ The App allows you to add locations to the list. Give them a name, type, address
 
 **App features:**
 -----------------------------------
-- Realm
+- Realm (CRUD)
 - UIKit
 - MapKit
 - Memory management
+- MVC
+- TableView sorting, searching
+- Custom TableViewCell
